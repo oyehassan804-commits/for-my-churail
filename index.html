@@ -1,0 +1,337 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops! A Special Something...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Styling for Modern Romantic Theme */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        :root {
+            /* Clean & Soothing Palette */
+            --soft-rose: #e8a87c; 
+            --deep-plum: #413c69; 
+            --light-cream: #f9f7f3; 
+            --text-primary: #413c69; 
+            --card-base: #ffffff;
+            --shadow-subtle: rgba(65, 60, 105, 0.1);
+            --delete-color: #ef767a; 
+            --sorry-color: #83b692; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-cream);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden; 
+        }
+
+        /* --------------------------------- */
+        /* --- 404-STYLE INTRO SCREEN --- */
+        /* --------------------------------- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0e8f8 0%, #e8e0f5 100%); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.8s ease-out; 
+            color: var(--deep-plum);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .intro-content-404 {
+            font-size: 3.5rem; 
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--deep-plum);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            letter-spacing: -1px; 
+        }
+        
+        .intro-content-404 span {
+            display: block;
+            font-size: 1.3rem; 
+            font-weight: 400;
+            color: #7a73a3; 
+            margin-top: 15px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Surprise Button Style --- */
+        #reveal-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-color: var(--soft-rose);
+            color: white;
+            border: none;
+            border-radius: 30px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 40px; 
+        }
+
+        #reveal-button:hover {
+            background-color: #e59567; 
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            visibility: hidden;
+            pointer-events: none; 
+        }
+
+        /* --------------------------------- */
+        /* --- MAIN LIST STYLING --- */
+        /* --------------------------------- */
+        .container {
+            background: var(--card-base);
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px var(--shadow-subtle);
+            max-width: 600px; 
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out 0.1s, transform 0.8s ease-out 0.1s; 
+        }
+
+        .show-list {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        header { margin-bottom: 30px; }
+
+        .title {
+            font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;
+            background: linear-gradient(45deg, var(--deep-plum), var(--soft-rose));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent; letter-spacing: 0.5px;
+        }
+
+        .subtitle { font-family: 'Poppins', sans-serif; font-size: 1rem; color: #999; font-weight: 400; }
+        .sorry-list { list-style: none; padding: 0; margin: 0 0 25px 0; }
+        .sorry-list-item {
+            background: var(--card-base); 
+            padding: 15px 20px; 
+            padding-right: 120px; /* Space for buttons */
+            margin-bottom: 10px; border-radius: 10px; 
+            text-align: left; display: flex; align-items: center; 
+            justify-content: space-between;
+            transition: all 0.3s ease; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee; border-left: 5px solid var(--soft-rose); 
+            cursor: default; font-weight: 400; position: relative; 
+            opacity: 0; 
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .sorry-list-item:hover {
+            transform: translateY(-3px); box-shadow: 0 8px 20px var(--shadow-subtle); 
+            background-color: #fff; border-left: 5px solid var(--deep-plum);
+        }
+        .sorry-content { display: flex; align-items: center; flex-grow: 1; }
+        .apology-icon { font-size: 1.2rem; color: var(--soft-rose); margin-right: 15px; }
+        .sorry-text { font-size: 1rem; color: var(--text-primary); }
+
+        /* --- UPDATED BUTTON CONTAINER STYLING --- */
+        .button-container {
+            position: absolute; /* Position relative to the list item */
+            right: 10px; /* Padded from the right edge */
+            top: 50%;
+            transform: translateY(-50%); /* Centered vertically */
+            display: flex; 
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 4px; /* Reduced gap */
+            opacity: 1; /* Always show buttons */
+            transition: opacity 0.3s ease;
+            min-width: 100px; 
+            justify-content: center;
+        }
+
+        /* .sorry-list-item:hover .button-container { opacity: 1; transform: scale(1); } */
+        /* Removed hover opacity change since we want them visible */
+
+        .action-button {
+            padding: 4px 8px; /* Reduced padding for smaller buttons */
+            border: none;
+            border-radius: 15px; /* More rounded/pill-like */
+            font-size: 0.75rem; /* Slightly smaller font */
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .delete-btn { background-color: var(--delete-color); color: white; }
+        .delete-btn:hover { background-color: #d8696d; box-shadow: 0 2px 5px rgba(239, 118, 122, 0.5); }
+        .sorry-btn { background-color: var(--sorry-color); color: white; }
+        .sorry-btn:hover { background-color: #6d997d; box-shadow: 0 2px 5px rgba(131, 182, 146, 0.5); }
+        
+        /* Accepted/Acknowledged State Style */
+        .accepted { opacity: 0.7; background-color: #f8fff9; border-left: 5px solid var(--sorry-color); }
+        .accepted .sorry-text { text-decoration: line-through; color: #b3b3b3; font-style: italic; }
+        .accepted .apology-icon { color: var(--sorry-color); }
+        .note-box {
+            background-color: #e6e4f0; color: var(--deep-plum); padding: 15px; border-radius: 10px;
+            font-style: italic; font-size: 0.9rem; border: 1px dashed var(--deep-plum); margin-top: 20px;
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .sorry-list-item:nth-child(1) { animation-delay: 0.1s; } .sorry-list-item:nth-child(2) { animation-delay: 0.2s; }
+        .sorry-list-item:nth-child(3) { animation-delay: 0.3s; } .sorry-list-item:nth-child(4) { animation-delay: 0.4s; }
+        .sorry-list-item:nth-child(5) { animation-delay: 0.5s; } .sorry-list-item:nth-child(6) { animation-delay: 0.6s; }
+
+    </style>
+</head>
+<body>
+    
+    <div id="intro-screen">
+        <div class="intro-content-404">
+            Oops… looks like you found my little secret ❤️
+            <span>I hope this little page brings a little softness to your heart.</span>
+        </div>
+        <button id="reveal-button">Reveal My Heart</button>
+    </div>
+
+    <div class="container" id="main-list-container">
+        <header>
+            <h1 class="title">Sorry My Churail</h1>
+            <p class="subtitle">I'm dedicated to being better for you. Every day.</p>
+        </header>
+        
+        <ul id="sorry-list" class="sorry-list">
+            </ul>
+        
+        <div class="note-box">
+            <p>"Action expresses priorities. My priority is your happiness. Thank you for your forgiveness."</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Content, Interactivity, and Intro Logic
+
+        const introScreen = document.getElementById('intro-screen');
+        const mainContainer = document.getElementById('main-list-container');
+        const revealButton = document.getElementById('reveal-button');
+
+        // --- INTRO SCREEN LOGIC ---
+        revealButton.addEventListener('click', () => {
+            // 1. Fade out the intro screen
+            introScreen.classList.add('fade-out');
+            
+            // 2. Show the main list container after the fade-out duration
+            setTimeout(() => {
+                mainContainer.classList.add('show-list');
+            }, 500); // 0.5 second delay after click for smooth transition
+        });
+
+
+        // --- LIST LOGIC ---
+        let sorryItems = [
+            "Uss din jab maine aapki baat poori tarah nahi suni thi.",
+            "Woh chhoti si baat par gussa ho jaana, jo zaroori nahi thi.",
+            "Agar mere kisi mazak se aapko bura laga ho.",
+            "Jab maine aapki feelings ko theek se nahi samjha.",
+            "Agar main der se respond kiya ya aapko wait karaya.",
+            "Har woh lamha jismein main behtar shakhs ban sakta tha."
+        ];
+
+        const listElement = document.getElementById('sorry-list');
+
+        function renderList() {
+            listElement.innerHTML = '';
+            
+            sorryItems.forEach((text, index) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('sorry-list-item');
+                listItem.setAttribute('data-index', index);
+                
+                listItem.innerHTML = `
+                    <div class="sorry-content">
+                        <span class="apology-icon">🙏</span> 
+                        <span class="sorry-text">${text}</span>
+                    </div>
+                    <div class="button-container">
+                        <button class="action-button delete-btn" data-index="${index}">REMOVE</button>
+                        <button class="action-button sorry-btn" data-index="${index}">ACCEPT</button>
+                    </div>
+                `;
+                
+                listElement.appendChild(listItem);
+            });
+
+            attachButtonListeners();
+        }
+
+        function attachButtonListeners() {
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.stopPropagation(); 
+                    const index = parseInt(this.getAttribute('data-index'));
+                    
+                    if (confirm("Are you sure you want to remove this apology?")) {
+                        sorryItems.splice(index, 1); 
+                        renderList(); 
+                    }
+                });
+            });
+
+            document.querySelectorAll('.sorry-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    const listItem = this.closest('.sorry-list-item');
+                    
+                    listItem.classList.toggle('accepted');
+                    
+                    const icon = listItem.querySelector('.apology-icon');
+                    if (listItem.classList.contains('accepted')) {
+                        icon.textContent = '✅'; 
+                        this.textContent = 'PROMISE KEPT';
+                        this.style.backgroundColor = '#4CAF50'; 
+                    } else {
+                        icon.textContent = '🙏';
+                        this.textContent = 'ACCEPT';
+                        this.style.backgroundColor = 'var(--sorry-color)';
+                    }
+                });
+            });
+        }
+
+        renderList();
+    </script>
+</body>
+</html>
